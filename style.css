@@ -1,0 +1,231 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --accent-color: #4a90e2;
+    --secondary-color: #666666;
+    --border-color: #333344;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s ease;
+}
+
+.light-mode {
+    --bg-color: #f0f0f0;
+    --text-color: #333344;
+    --accent-color: #007bff;
+    --secondary-color: #6c757d;
+    --border-color: #cccccc;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+html, body {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    font-family: "Poppins", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+header {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin: 0;
+}
+
+.btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+}
+
+#container #score {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 10vh;
+    transition: transform 0.5s ease;
+    color: var(--text-color);
+    transform: translatey(-200px) scale(1);
+    z-index: 10;
+}
+
+#container #game {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#game canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#container .game-over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+#container .game-over * {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translatey(-50px);
+    color: var(--text-color);
+}
+
+#container .game-over h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+#container .game-over p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+#container .game-ready {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background: var(--bg-color);
+}
+
+#container .game-ready #start-button {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translatey(-50px);
+    border: 3px solid var(--accent-color);
+    padding: 15px 30px;
+    background-color: transparent;
+    color: var(--accent-color);
+    font-size: 2rem;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+#container .game-ready #start-button:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transform: translatey(-50px) scale(1.05);
+}
+
+#container #instructions {
+    position: absolute;
+    width: 100%;
+    top: 20vh;
+    left: 0;
+    text-align: center;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+#container #instructions.hide {
+    opacity: 0 !important;
+}
+
+#container.playing #score, #container.resetting #score {
+    transform: translatey(0px) scale(1);
+}
+
+#container.playing #instructions {
+    opacity: 1;
+}
+
+#container.ready .game-ready #start-button {
+    opacity: 1;
+    transform: translatey(0);
+}
+
+#container.ended #score {
+    transform: translatey(6vh) scale(1.5);
+}
+
+#container.ended .game-over * {
+    opacity: 1;
+    transform: translatey(0);
+}
+
+#container.ended .game-over p {
+    transition-delay: 0.3s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    #container .game-over h2 {
+        font-size: 2rem;
+    }
+
+    #container .game-ready #start-button {
+        font-size: 1.5rem;
+        padding: 12px 24px;
+    }
+
+    #container #instructions {
+        font-size: 1rem;
+        top: 25vh;
+    }
+}
