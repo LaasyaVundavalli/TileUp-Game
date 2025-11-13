@@ -1,4 +1,4 @@
-# Stack Game
+# TileUp Game
 
 An upgraded 3D block stacking game built with Three.js and GSAP. Stack blocks as high as possible by placing them precisely on top of each other. Miss the placement and the game ends!
 
@@ -72,7 +72,3 @@ Simply open `index.html` in any modern web browser with WebGL support. No server
 ## Credits
 
 Original game concept and Three.js implementation inspired by classic stacking games.
-
-## License
-
-This project is open source and available under the MIT License.
